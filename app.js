@@ -9,7 +9,7 @@ app.use(cors());
 
 let animalArr = ["tiger", "zebra", "lion", "bear", "wolf", "owl", "elephant", "shark", "giraffe"]
 
-app.get("/animal/:species", (req, res) => {
+const isAnimal = (req, res, next) => {
     if(animalArr.includes(req.params["species"].toLowerCase())){
         res.json({
             status: "Success",
@@ -21,6 +21,11 @@ app.get("/animal/:species", (req, res) => {
             message: false
         })
     }
+    next()
+}
+
+app.get("/animal/:species",isAnimal, (req, res) => {
+   res.json(req.params["species"])
 })
 
 app.get("/", (req, res) => {
