@@ -26,6 +26,21 @@ app.get("/animal/:species",isAnimal, (req, res) => {
         message: true
     })
 })
+const generateSpread = (req, res, next) => {
+    // res.json(req.params)
+    let arr = []
+    let floor = parseInt(req.params["floor"])
+    let ceiling = parseInt(req.params["ceiling"])
+    for(let i = floor; i <= ceiling; i++ ){
+        arr.push(i)
+    }
+    let randomNum = arr[Math.floor(Math.random() * arr.length)]
+    
+}
+
+app.get("/random/:floor/:ceiling", generateSpread, (req, res) => {
+    res.json(randomNum)
+})
 
 
 app.get("/", (req, res) => {
