@@ -5,10 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     button.addEventListener("click", () => {
         try{
-            let res = axios.get(`http://localhost:3000/animal/${input.value}`);
-            debugger
-            p.innerText = res.data
-            debugger
+            axios.get(`http://localhost:3000/animal/${input.value}`).then(res => {
+                debugger
+                p.innerText = res.data
+            });
 
         } catch (err){
             console.log(err)
