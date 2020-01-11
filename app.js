@@ -25,7 +25,7 @@ const isAnimal = (req, res, next) => {
 }
 
 app.get("/animal/:species",isAnimal, (req, res) => {
-   res.json(req.params["species"])
+   res.json(`${req.params["species"]} is included on the list: ${req.params["species"]["message"]} `)
 })
 
 app.get("/", (req, res) => {
