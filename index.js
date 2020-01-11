@@ -6,8 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
     button.addEventListener("click", () => {
         try{
             axios.get(`http://localhost:3000/animal/${input.value}`).then(res => {
-                debugger
-                p.innerText = res.data
+                // p.innerText = `${input.value} is on the list: ${res.data["message"]} `
+                if(res.data["message"] === true){
+                    p.innerText = `${input.value} is on the list`
+                }
             });
 
         } catch (err){

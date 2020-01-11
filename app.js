@@ -11,22 +11,22 @@ let animalArr = ["tiger", "zebra", "lion", "bear", "wolf", "owl", "elephant", "s
 
 const isAnimal = (req, res, next) => {
     if(animalArr.includes(req.params["species"].toLowerCase())){
-        res.json({
-            status: "Success",
-            message: true
-        })
+        next();
     } else {
         res.json({
             status: "Unsuccessful",
             message: false
         })
     }
-    next()
 }
 
 app.get("/animal/:species",isAnimal, (req, res) => {
-   res.json(`${req.params["species"]} is included on the list: ${req.params["species"]["message"]} `)
+    res.json({
+        status: "Success",
+        message: true
+    })
 })
+
 
 app.get("/", (req, res) => {
     res.json("Hello World")
