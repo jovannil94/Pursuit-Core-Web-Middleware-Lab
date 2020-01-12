@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-    let input = document.querySelector("input")
-    let button = document.querySelector("button")
+    let input = document.querySelector("#animalInput")
+    let button = document.querySelector("#animalButton")
     let p = document.querySelector("p")
 
     button.addEventListener("click", () => {
@@ -16,4 +16,22 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log(err)
         }
     }) 
+})
+
+document.addEventListener("DOMContentLoaded", () => {
+    let input = document.querySelector("#num1");
+    let input2 = document.querySelector("#num2");
+    let button = document.querySelector("#numButton");
+    let h2 = document.querySelector("#result");    
+
+    button.addEventListener("click", () => {
+        try {
+            axios.get(`http://localhost:3000/random/${input.value}/${input2.value}`).then(res => {
+            h2.innerHTML = "" 
+            h2.innerText = res.data.randomNum
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    })
 })
