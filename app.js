@@ -8,6 +8,28 @@ const app = express();
 app.use(cors());
 
 let animalArr = ["tiger", "zebra", "lion", "bear", "wolf", "owl", "elephant", "shark", "giraffe"]
+let peopleArr = ['xavier', 'michelle', 'corey', 'reed']
+
+
+const handleQueue = (req, res, next) => {
+    if(req.params["function"] === "peek"){
+        res.json({
+            status: "success",
+            data: peopleArr[peopleArr.length-1]
+        })  
+    } else if (req.params["function"] === "enqueue") {
+        peopleArr.unshift(req.query.q)
+        res.json({
+            status: "success",
+            data: peopleArr[0]
+        })
+    }
+}
+
+app.get("/queue/:function/", handleQueue, (req, res) => {
+    res.json()
+})
+
 
 const isAnimal = (req, res, next) => {
     if(animalArr.includes(req.params["species"].toLowerCase())){

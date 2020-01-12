@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             axios.get(`http://localhost:3000/random/${input.value}/${input2.value}`).then(res => {
             h2.innerHTML = "" 
-            h2.innerText = res.data.randomNum
+            h2.innerText = res.data.randPick
             })
         } catch (err) {
             console.log(err)
